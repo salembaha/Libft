@@ -6,7 +6,7 @@
 /*   By: sabahass <sabahass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 16:52:17 by sabahass          #+#    #+#             */
-/*   Updated: 2025/07/25 18:07:24 by sabahass         ###   ########.fr       */
+/*   Updated: 2025/07/25 23:30:59 by sabahass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include <unistd.h>
+# include <stdint.h>
 
 /* linked list structure */
 typedef struct s_list

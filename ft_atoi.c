@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabahass <sabahass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 17:46:08 by sabahass          #+#    #+#             */
-/*   Updated: 2025/07/21 17:49:30 by sabahass         ###   ########.fr       */
+/*   Created: 2025/07/25 21:47:40 by sabahass          #+#    #+#             */
+/*   Updated: 2025/07/26 00:07:18 by sabahass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_bzero(void *s, size_t n)
+int	ft_atoi(const char *str)
 {
-	ft_memset(s, 0, n);
+	int	sign;
+	int	result;
+	int	i;
+
+	sign = 1;
+	result = 0;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
 }
