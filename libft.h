@@ -15,7 +15,6 @@
 
 # include <stddef.h>
 # include <unistd.h>
-# include <stdint.h>
 # include <stdlib.h>
 
 /* linked list structure */
