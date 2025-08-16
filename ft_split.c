@@ -1,5 +1,4 @@
 #include "libft.h"
-#include <stdio.h>
 
 size_t  count_tokens(char const *str, char delimiter)
 {
@@ -91,12 +90,3 @@ char    **ft_split(char const *s, char c)
 	return token_v;
 }
 
-int	main()
-{
-	char	*s = "  Hello Ting World, dude I test test tiet love you!!";
-
-	char	**v = ft_split(s, ' ');
-
-	while (*v)
-	printf("%s\n", *v++);
-}
