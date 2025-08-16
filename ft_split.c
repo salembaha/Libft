@@ -1,92 +1,86 @@
 #include "libft.h"
 
-size_t  count_tokens(char const *str, char delimiter)
+static int	count_words(const char *str, char c)
 {
-    size_t  tokens;
-    bool    inside_token;
-
-	tokens = 0;
-	inside_token = false;
-    while (*str)
-    {
-        inside_token = false;
-        while (*str == delimiter && *str)
-        ++str;
-        while (*str != delimiter && *str)
-        {
-            if (!inside_token)
-            inside_token = true;
-			str++;
-        }
-		if (inside_token)
-        tokens++;
-    }
-    return tokens;
-}
-
-int	safe_malloc(char **token_v, int position, size_t buffer)
-{
+	int	count_words;
+	int	in_word_flag;
 	int	i;
 
+	count_words = 0;
+	in_word_flag = 0;
 	i = 0;
-	token_v[position] = malloc(buffer);
-	if (NULL == token_v[position])
+	while (str[i] != '\0')
 	{
-		while (i < position)
+		if (str[i] != c && !in_word_flag)
 		{
-			free(token_v[i++]);
+			in_word_flag = 1;
+			count_words++;
 		}
-		free(token_v);
-		return 1;
+		else if (str[i] == c)
+			in_word_flag = 0;
+		i++;
 	}
-	return 0;
+	return (count_words);
 }
 
-int	fill(char **token_v, char const *s, char delimiter)
+static char	*getword(const char *s, char c, int *index)
 {
-	size_t	len;
+	char	*word;
+	int		start;
+	int		len;
 	int		i;
 
+	while (s[*index] == c && s[*index] != '\0')
+		(*index)++;
+	start = *index;
+	while (s[*index] != c && s[*index] != '\0')
+		(*index)++;
+	len = *index - start;
+	word = malloc((len + 1) * sizeof(char));
+	if (word == NULL)
+		return (NULL);
 	i = 0;
-	while (*s)
+	while (i < len)
 	{
-		len = 0;
-		while (*s == delimiter && *s)
-		++s;
-		while (*s != delimiter && *s)
-		{
-			++len;
-			++s;
-		}
-		if (len)
-		{
-			if (safe_malloc(token_v, i, len +1))
-			return (1);
-		}
-		ft_strlcpy(token_v[i], s - len, len + 1);
-		++i;
+		word[i] = s[start + i];
+		i++;
 	}
-	return 0;
+	word[i] = '\0';
+	return (word);
 }
 
-// count the tokens in str
-// allocate memory for array of str
-// copy token to the right position
-char    **ft_split(char const *s, char c)
+static void	free_result(char **result, int count)
 {
-	size_t tokens;
-	char **token_v;
-
-	if (NULL == s)
-		return NULL;
-	tokens = 0;
-	tokens = count_tokens(s, c);
-	token_v = malloc((tokens + 1) * sizeof(char *));
-	if (NULL == token_v)
-		return NULL;
-		token_v[tokens] = NULL;
-	if (fill(token_v, s, c))
-		return NULL;
-	return token_v;
+	while (count > 0)
+		free(result[--count]);
+	free(result);
 }
 
+char	**ft_split(char const *s, char c)
+{
+	char	**result;
+	int		i;
+	int		word_count;
+	int		index;
+
+	if (!s)
+		return (NULL);
+	word_count = count_words(s, c);
+	result = malloc((word_count + 1) * sizeof(char *));
+	if (!result)
+		return (NULL);
+	index = 0;
+	i = 0;
+	while (i < word_count)
+	{
+		result[i] = getword(s, c, &index);
+		if (!result[i])
+		{
+			free_result(result, i);
+			return (NULL);
+		}
+		i++;
+	}
+	result[i] = NULL;
+	return (result);
+}
