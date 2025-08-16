@@ -31,12 +31,3 @@ char  *ft_strtrim(char const *s1, char const *set)
   ft_strlcpy(trimmed_str, &s1[start], end - start + 1);
     return (trimmed_str);
 }
-
-int main(void)
-{
-    char *s1 = "xxyyyyTingILoveYouyyyyxxyxx";
-    char *set = "xy";
-    char *trimmed_str = ft_strtrim(s1, set);
-    printf("Trimmed String: '%s'\n", trimmed_str);
-    free(trimmed_str);
-}
