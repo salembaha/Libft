@@ -1,0 +1,234 @@
+# Libft Function Summary (Codam Preparation)
+
+## Character Checks
+- **ft_isalpha(int c), ft_isdigit(int c), ft_isalnum(int c), ft_isascii(int c), ft_isprint(int c)**  
+  - **How:** Return 1 if the argument matches (e.g., is a letter, digit, etc.), else 0.  
+  - **Edge cases:** Non-ASCII values, boundary values (like '\0').  
+  - **Pointers:** Not used.  
+  - **Syntax:** Returns int, takes an int (usually a char value).
+
+## Case Conversion
+- **ft_toupper(int c), ft_tolower(int c)**  
+  - **How:** Convert char to uppercase/lowercase if possible.  
+  - **Edge cases:** Non-alphabetic input.  
+  - **Pointers:** Not used.  
+  - **Syntax:** Returns int.
+
+## String Functions
+- **ft_strlen(const char *str)**  
+  - **How:** Counts characters until '\0'.  
+  - **Edge cases:** Empty string, NULL pointer (undefined).  
+  - **Pointers:** Used to traverse memory.  
+  - **Syntax:** Returns size_t.
+
+- **ft_strchr(const char *s, int c), ft_strrchr(const char *s, int c)**  
+  - **How:** Finds first/last occurrence of c.  
+  - **Edge cases:** c = '\0', not found.  
+  - **Pointers:** Returns pointer to found char or NULL.  
+  - **Syntax:** Returns char*.
+
+- **ft_strncmp(const char *s1, const char *s2, size_t n)**  
+  - **How:** Compares up to n bytes.  
+  - **Edge cases:** n=0, NULL pointers.  
+  - **Pointers:** Used for traversal.  
+  - **Syntax:** Returns int.
+
+- **ft_strnstr(const char *big, const char *little, size_t len)**  
+  - **How:** Finds substring in a string, max len.  
+  - **Edge cases:** Empty substrings, NULL pointers.  
+  - **Pointers:** Returns pointer or NULL.  
+  - **Syntax:** Returns char*.
+
+## Memory Manipulation
+- **ft_memset(void *s, int c, size_t n)**  
+  - **How:** Fills n bytes at s with c.  
+  - **Edge cases:** s=NULL, n=0.  
+  - **Pointers:** Direct memory access.  
+  - **Syntax:** Returns void*.
+
+- **ft_bzero(void *s, size_t n)**  
+  - **How:** Sets n bytes at s to 0.  
+  - **Edge cases:** s=NULL, n=0.  
+  - **Pointers:** Direct.  
+  - **Syntax:** Returns void.
+
+- **ft_memcpy(void *dest, const void *src, size_t n)**  
+  - **How:** Copies n bytes from src to dest.  
+  - **Edge cases:** Overlapping memory (undefined), NULL pointers.  
+  - **Pointers:** Used for both src and dest.  
+  - **Syntax:** Returns void*.
+
+- **ft_memmove(void *dest, const void *src, size_t n)**  
+  - **How:** Copies n bytes, safe for overlap.  
+  - **Edge cases:** dest==src, n=0.  
+  - **Pointers:** Used for safe copy logic.  
+  - **Syntax:** Returns void*.
+
+- **ft_memchr(const void *s, int c, size_t n)**  
+  - **How:** Finds byte c in first n bytes.  
+  - **Edge cases:** Not found, n=0.  
+  - **Pointers:** Returns pointer or NULL.  
+  - **Syntax:** Returns void*.
+
+- **ft_memcmp(const void *s1, const void *s2, size_t n)**  
+  - **How:** Compares n bytes.  
+  - **Edge cases:** n=0.  
+  - **Pointers:** Used for comparison.  
+  - **Syntax:** Returns int.
+
+## String Copy / Concatenation
+- **ft_strlcpy(char *dest, const char *src, size_t size)**  
+  - **How:** Copies up to size-1 bytes, null-terminates.  
+  - **Edge cases:** size=0, NULL pointers.  
+  - **Pointers:** Used for both src and dest.  
+  - **Syntax:** Returns length of src.
+
+- **ft_strlcat(char *dest, const char *src, size_t size)**  
+  - **How:** Concats up to size-1 bytes, null-terminates.  
+  - **Edge cases:** size too small, NULL pointers.  
+  - **Pointers:** Used for both.  
+  - **Syntax:** Returns total length it tried to create.
+
+## Conversion
+- **ft_atoi(const char *str)**  
+  - **How:** Converts string to int.  
+  - **Edge cases:** Overflows, invalid chars, leading whitespace.  
+  - **Pointers:** Used to traverse string.  
+  - **Syntax:** Returns int.
+
+- **ft_itoa(int n)**  
+  - **How:** Converts int to string.  
+  - **Edge cases:** INT_MIN, malloc failure.  
+  - **Pointers:** Used for memory allocation.  
+  - **Syntax:** Returns char*.
+
+## Memory Allocation
+- **ft_calloc(size_t nmemb, size_t size)**  
+  - **How:** Allocates and zeroes memory.  
+  - **Edge cases:** Overflow, malloc failure.  
+  - **Pointers:** Used for returned memory.  
+  - **Syntax:** Returns void*.
+
+- **ft_strdup(const char *str)**  
+  - **How:** Duplicates string with malloc.  
+  - **Edge cases:** NULL pointer, malloc failure.  
+  - **Pointers:** Allocates and returns pointer.  
+  - **Syntax:** Returns char*.
+
+## String Creation / Manipulation
+- **ft_substr(char const *s, unsigned int start, size_t len)**  
+  - **How:** Returns substring.  
+  - **Edge cases:** start > strlen(s), malloc fail.  
+  - **Pointers:** Returns allocated pointer.  
+  - **Syntax:** Returns char*.
+
+- **ft_strjoin(char const *s1, char const *s2)**  
+  - **How:** Concatenates two strings.  
+  - **Edge cases:** NULL input, malloc fail.  
+  - **Pointers:** Returns pointer to new string.  
+  - **Syntax:** Returns char*.
+
+- **ft_strtrim(char const *s1, char const *set)**  
+  - **How:** Trims set chars from ends.  
+  - **Edge cases:** All chars trimmed, malloc fail.  
+  - **Pointers:** Returns pointer to result.  
+  - **Syntax:** Returns char*.
+
+- **ft_split(char const *s, char c)**  
+  - **How:** Splits string by delimiter, returns array.  
+  - **Edge cases:** Empty input, malloc fail.  
+  - **Pointers:** Returns array of pointers, must free.  
+  - **Syntax:** Returns char**.
+
+- **ft_strmapi(char const *s, char (*f)(unsigned int, char))**  
+  - **How:** Applies f to each char, returns new string.  
+  - **Edge cases:** NULL input, malloc fail.  
+  - **Pointers:** Used for result string.  
+  - **Syntax:** Returns char*.
+
+- **ft_striteri(char *s, void (*f)(unsigned int, char*))**  
+  - **How:** Applies f to each char in place.  
+  - **Edge cases:** NULL inputs.  
+  - **Pointers:** Direct access to string.  
+  - **Syntax:** Returns void.
+
+## File Descriptor Output
+- **ft_putchar_fd(char c, int fd), ft_putstr_fd(char *s, int fd), ft_putendl_fd(char *s, int fd), ft_putnbr_fd(int n, int fd)**  
+  - **How:** Write char/string/int to file descriptor.  
+  - **Edge cases:** fd invalid, NULL string, INT_MIN for number.  
+  - **Pointers:** Used for string traversal.  
+  - **Syntax:** Returns void.
+
+## Linked List Functions (Bonus)
+- **ft_lstnew(void *content)**  
+  - **How:** Allocates a new list node.  
+  - **Edge cases:** malloc fail.  
+  - **Pointers:** Returns pointer to new node.  
+  - **Syntax:** Returns t_list*.
+
+- **ft_lstadd_front(t_list **lst, t_list *new)**  
+  - **How:** Adds new node at front.  
+  - **Edge cases:** NULL pointers.  
+  - **Pointers:** Manipulates list pointers.  
+  - **Syntax:** Returns void.
+
+- **ft_lstsize(t_list *lst)**  
+  - **How:** Counts nodes in list.  
+  - **Edge cases:** Empty list.  
+  - **Pointers:** Traverses list via next.  
+  - **Syntax:** Returns int.
+
+- **ft_lstlast(t_list *lst)**  
+  - **How:** Returns last node.  
+  - **Edge cases:** Empty list.  
+  - **Pointers:** Traverses list.  
+  - **Syntax:** Returns t_list*.
+
+- **ft_lstadd_back(t_list **lst, t_list *new)**  
+  - **How:** Adds node at end.  
+  - **Edge cases:** NULL pointers.  
+  - **Pointers:** Manipulates next pointers.  
+  - **Syntax:** Returns void.
+
+- **ft_lstdelone(t_list *lst, void (*del)(void*))**  
+  - **How:** Deletes one node, frees memory.  
+  - **Edge cases:** NULL input.  
+  - **Pointers:** Memory management.  
+  - **Syntax:** Returns void.
+
+- **ft_lstclear(t_list **lst, void (*del)(void*))**  
+  - **How:** Deletes all nodes.  
+  - **Edge cases:** Empty list.  
+  - **Pointers:** Frees all nodes.  
+  - **Syntax:** Returns void.
+
+- **ft_lstiter(t_list *lst, void (*f)(void*))**  
+  - **How:** Applies function to each node's content.  
+  - **Edge cases:** Empty list.  
+  - **Pointers:** Traverses list.  
+  - **Syntax:** Returns void.
+
+- **ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))**  
+  - **How:** Creates new list with mapped content.  
+  - **Edge cases:** Malloc fail, NULL pointers.  
+  - **Pointers:** Allocates and manages new nodes.  
+  - **Syntax:** Returns t_list*.
+
+---
+
+## About Pointers in Libft
+- Used for direct memory access/manipulation.
+- Enable dynamic allocation (malloc).
+- Allow for string and list traversal.
+- Critical for returning data from functions (e.g., newly allocated strings, lists).
+
+## Syntax Highlights (C)
+- `type *name;` declares a pointer.
+- `malloc(size)` allocates memory dynamically.
+- `free(ptr)` deallocates memory.
+- `(*func)(args)` defines a function pointer.
+- Use `const` to indicate a pointer to immutable data.
+
+---
+
+Ready for Codam evaluation.
