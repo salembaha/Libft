@@ -6,7 +6,7 @@
 /*   By: sabahass <sabahass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 00:07:40 by sabahass          #+#    #+#             */
-/*   Updated: 2025/07/26 00:09:33 by sabahass         ###   ########.fr       */
+/*   Updated: 2025/08/17 23:53:52 by sabahass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static int	get_len(int n)
 static void	fill_number(char *str, int n, int len, int is_negative)
 {
 	int	i;
-	
+
 	if (is_negative)
 		n = -n;
 	i = len - 1;
 	while (i >= is_negative)
-		{
-			str[i] = (n % 10) + '0';
-			n /= 10;
-			i--;
-		}
+	{
+		str[i] = (n % 10) + '0';
+		n /= 10;
+		i--;
+	}
 	if (is_negative)
 		str[0] = '-';
 }
